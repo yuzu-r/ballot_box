@@ -24,6 +24,9 @@ gem 'figaro'
 gem 'responders'
 gem 'devise'
 
+# latest version of thor isn't playing well with something
+gem 'thor', '0.19.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
