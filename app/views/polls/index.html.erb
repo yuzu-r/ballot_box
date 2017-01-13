@@ -1,0 +1,11 @@
+<h2>this is the polls (non-api) page </h2>
+
+<script>
+  $.ajax({
+    url: '/polls.json',
+    type: 'GET',
+    success: function(data){
+      console.log(data);
+    }
+  });
+</script>
