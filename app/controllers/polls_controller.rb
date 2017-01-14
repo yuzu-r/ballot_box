@@ -1,15 +1,27 @@
 class PollsController < ApplicationController
   respond_to :json
   def index
-    respond_with Poll.all
+    respond_with Poll.select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes').joins(:candidates).group('polls.id')
+  end
+
+  def show
+    respond_with Poll.find(params[:id])
+  end
+
+  def new
+    @poll = Poll.new
   end
 
   def create
-    @poll = Poll.new(poll_params)
+
+    #@poll = Poll.new(poll_params)
+    @poll = Poll.create(poll_params)
     if @poll.save
+      logger.info 'it saved'
       respond_with @poll
     else
-      respond_with @poll.errors, status: :unprocessable_entity
+      logger.info 'it errored'
+      respond_with @poll, status: :unprocessable_entity
     end
   end
 
@@ -25,6 +37,6 @@ class PollsController < ApplicationController
 
   private
     def poll_params
-      params.require(:poll).permit(:name, :user)
+      params.require(:poll).permit(:title, :description, :user_id)
     end
 end

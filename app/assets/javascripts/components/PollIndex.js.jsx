@@ -6,19 +6,19 @@ var PollIndex = React.createClass({
   },
   componentDidMount(){
     $.getJSON('/polls.json', (response) => {
+      console.log(response)
       this.setState({polls: response})});
   },
   render(){
     var polls = this.state.polls.map((p) => {
       return (
-        <div key={p.id}>
-          <h4>{p.title}</h4>
-          <p>{p.created_at}</p>
-        </div>
+        <PollItem key={p.id} item = {p} />
       )
     });
     return (    
       <div>
+        <PollIndexHeader />
+        <div className='clearfix'></div>
         {polls}
       </div>
     )

@@ -3,4 +3,5 @@ class Poll < ActiveRecord::Base
   has_many :candidates
   validates :title, presence: true
   validates :user, presence: true
+
 end
