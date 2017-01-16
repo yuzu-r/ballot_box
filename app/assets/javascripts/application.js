@@ -18,3 +18,6 @@
 //= require components
 //= require_tree .
 //= require bootstrap-sprockets
+ReactRailsUJS.handleEvent('turbolinks:before-cache', function() {
+  window.ReactRailsUJS.unmountComponents();
+});

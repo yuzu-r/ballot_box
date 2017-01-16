@@ -1,21 +1,20 @@
 var NewPollContainer = React.createClass({
   getDefaultProps: function(){
     return (
-      {title: '',
-       candidates: [
-                      {name: '', description: 'hi'},
-                      {name: '', description: 'bye'}
-                    ],
-       blankCandidate: {name: '', description: ''}
+      { 
+        blankCandidate: {name: '', description: ''}
       }
     )
   },
   getInitialState: function(){
     return( 
-      {title: this.props.title,
-      candidates: this.props.candidates}
+      {title: '',
+      candidates: this.props.blanks}
     )
   },
+  handleCancelPollCreate: function(){
+    Turbolinks.visit('/polls');
+  }, 
   handleDeleteCandidate: function(index){
     var newArray = this.state.candidates;
     newArray.splice(index,1);
@@ -89,7 +88,8 @@ var NewPollContainer = React.createClass({
                     handleTitleChange={this.handleTitleChange} />
         {candidatesArray}
         <PollButtons isValid={isValid}
-                    handleNewCandidate={this.handleNewCandidate}/>
+                    handleNewCandidate={this.handleNewCandidate}
+                    handleCancelPollCreate={this.handleCancelPollCreate}/>
       </div>
     )
   }

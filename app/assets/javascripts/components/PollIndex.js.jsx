@@ -6,7 +6,7 @@ var PollIndex = React.createClass({
   },
   componentDidMount(){
     $.getJSON('/polls.json', (response) => {
-      console.log(response)
+      //console.log(response)
       this.setState({polls: response})});
   },
   render(){
