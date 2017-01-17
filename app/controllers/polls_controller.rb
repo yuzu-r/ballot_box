@@ -3,7 +3,8 @@ class PollsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Poll.select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes').joins(:candidates).group('polls.id')
+    @polls = Poll.select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes').joins(:candidates).group('polls.id')
+    render component: 'PollIndex', props: { polls: @polls }, class: 'index'
   end
 
   def show
@@ -39,12 +40,11 @@ class PollsController < ApplicationController
   end
 
   def update
-    puts "hi #{poll_params}"
     @poll = Poll.find(params[:id])
-    puts "here is the poll: #{@poll}"
     if @poll
       result_of_vote = @poll.vote_for(poll_params['candidates_attributes']['id'])
-      respond_with @poll
+      @candidates = @poll.candidates
+      render json: {:poll => @poll, :candidates => @candidates, :voted => true}
     else
       @poll.errors.add(:base,:invalid)
       respond_with @poll, status: :unprocessable_entity

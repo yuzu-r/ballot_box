@@ -10,6 +10,11 @@
   background: lightyellow;
 }
 
+.poll-index-item:hover {
+  background: lightgray;
+  cursor: pointer;
+}
+
 .long-button{
   width: 90%;
 }
@@ -24,4 +29,8 @@
 
 .buttonArray {
   background: lightgreen;
+}
+
+button:disabled{
+  background: darkgrey;
 }

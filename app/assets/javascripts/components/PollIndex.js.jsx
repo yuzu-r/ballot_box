@@ -1,18 +1,17 @@
 var PollIndex = React.createClass({
   getInitialState(){
     return {
-      polls: []
+      polls: this.props.polls
     }
   },
-  componentDidMount(){
-    $.getJSON('/polls.json', (response) => {
-      //console.log(response)
-      this.setState({polls: response})});
+  showPoll(poll, e){
+    console.log('asked for poll', poll.id);
+    Turbolinks.visit('/polls/'+poll.id);
   },
   render(){
     var polls = this.state.polls.map((p) => {
       return (
-        <PollItem key={p.id} item = {p} />
+        <PollItem key={p.id} item={p} showPoll={this.showPoll} />
       )
     });
     return (    

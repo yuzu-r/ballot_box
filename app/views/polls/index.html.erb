@@ -1,3 +1,4 @@
 <h2>this is the polls index page </h2>
-<%= react_component 'PollIndex' %>
+<% debug(@polls) %>
+<%= react_component 'PollIndex', {polls: @polls},{prerender: true} %>
 
