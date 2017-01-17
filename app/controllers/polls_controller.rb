@@ -39,7 +39,7 @@ class PollsController < ApplicationController
     respond_with Poll.destroy(params[:id])
   end
 
-  def update
+  def vote
     @poll = Poll.find(params[:id])
     if @poll
       result_of_vote = @poll.vote_for(poll_params['candidates_attributes']['id'])

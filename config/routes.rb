@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :polls
   resources :candidates
   root 'polls#index'
-
+  patch 'polls/:id/vote', to: 'polls#vote'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

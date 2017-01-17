@@ -19,7 +19,7 @@ var Poll = React.createClass({
   handleVote(candidate, e) {
     console.log('voting for', candidate.id);
     $.ajax(
-      { url: '/polls/' + this.props.poll.id, 
+      { url: '/polls/' + this.props.poll.id + '/vote', 
         type: 'PATCH', 
         data: { 
             poll: {  
