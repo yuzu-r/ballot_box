@@ -14,8 +14,8 @@ class PollsController < ApplicationController
 
   def create
 
-    #@poll = Poll.new(poll_params)
-    @poll = Poll.create(poll_params)
+    @poll = Poll.new(poll_params)
+    #@poll = Poll.create(poll_params)
     if @poll.save
       logger.info 'it saved'
       respond_with @poll
@@ -37,6 +37,6 @@ class PollsController < ApplicationController
 
   private
     def poll_params
-      params.require(:poll).permit(:title, :description, :user_id)
+      params.require(:poll).permit(:title, :description, :user_id, candidates_attributes: [:id, :name, :_destroy])
     end
 end

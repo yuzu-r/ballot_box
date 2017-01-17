@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// The addition below supresses warning when moving around app with rails routes and react.
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks

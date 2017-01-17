@@ -39,6 +39,19 @@ var NewPollContainer = React.createClass({
       {candidates: newCandidates}
     )
   },
+  handlePollCreate: function(){
+    $.ajax(
+      { url: '/polls', 
+        type: 'POST', 
+        data: { 
+            poll: { title: this.state.title, 
+                    user_id: this.props.user.id,
+                    candidates_attributes: this.state.candidates
+                  } 
+          }, 
+        success: (response) => { console.log('it worked!', response); }
+      }); 
+  },
   handleTitleChange: function(e){
     var title = e.target.value;
     this.setState( 
@@ -89,7 +102,8 @@ var NewPollContainer = React.createClass({
         {candidatesArray}
         <PollButtons isValid={isValid}
                     handleNewCandidate={this.handleNewCandidate}
-                    handleCancelPollCreate={this.handleCancelPollCreate}/>
+                    handleCancelPollCreate={this.handleCancelPollCreate}
+                    handlePollCreate = {this.handlePollCreate}/>
       </div>
     )
   }
