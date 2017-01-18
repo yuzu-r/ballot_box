@@ -1,11 +1,23 @@
 class PollsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :add_option]
+  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :add_choice]
   respond_to :json
 
   def index
     sort_by = filtering_params['sort'] || 'alpha'
     @polls = Poll.send(sort_by)
     render component: 'PollIndex', props: { polls: @polls }, class: 'index'
+  end
+
+  def owner_index
+    @polls = user_signed_in? ? current_user.polls.alpha : nil
+    render component: 'PollIndex', props: { polls: @polls }, class: 'index'
+    #if user_signed_in?
+    #  @polls = current_user.polls.alpha
+    #  puts "still ok!"
+    #  render component: 'PollIndex', props: { polls: @polls }, class: 'index'
+    #else
+    #  @polls = nil
+    #end
   end
 
   def show
@@ -35,7 +47,9 @@ class PollsController < ApplicationController
   end
 
   def destroy
-    respond_with Poll.destroy(params[:id])
+    #respond_with Poll.destroy(params[:id])
+    Poll.destroy(params[:id])
+    redirect_to dashboard_path
   end
 
   def vote
