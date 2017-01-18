@@ -6,9 +6,18 @@ class Poll < ActiveRecord::Base
   accepts_nested_attributes_for :candidates, allow_destroy: true
   validates_associated :candidates
 
-  scope :alpha, -> { order(title: :asc) }
-  scope :newest, -> { order(created_at: :desc)}
-
+  scope :alpha, -> {select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes')
+                        .joins(:candidates)
+                        .group('polls.id')
+                        .order(title: :asc)}
+  scope :newest, -> {select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes')
+                        .joins(:candidates)
+                        .group('polls.id')
+                        .order(created_at: :desc)}
+  scope :popular, -> {select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes')
+                        .joins(:candidates)
+                        .group('polls.id')
+                        .order('total_votes desc')}
 
   def vote_for(candidate)
     puts "voting for: #{candidate}"

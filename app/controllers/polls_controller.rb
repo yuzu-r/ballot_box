@@ -4,14 +4,13 @@ class PollsController < ApplicationController
 
   def index2
     sortb = filtering_params[:sort] || 'alpha'
-    puts "#{sortb}"
+    # check that sortb is valid scope (:alpha, :newest, :popular)
     @polls = Poll.send(sortb)
-    @polls = @polls.select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes').joins(:candidates).group('polls.id')
     render component: 'PollIndex', props: { polls: @polls }, class: 'index'
   end
 
   def index
-    @polls = Poll.select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes').joins(:candidates).group('polls.id')
+    @polls = Poll.alpha
     render component: 'PollIndex', props: { polls: @polls }, class: 'index'
   end
 
