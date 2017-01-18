@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'polls#index'
   patch 'polls/:id/vote', to: 'polls#vote'
   patch 'polls/:id/add', to: 'polls#add_choice'
+  get 'pollz', to: 'polls#index2'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

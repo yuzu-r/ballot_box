@@ -2,6 +2,14 @@ class PollsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :add_option]
   respond_to :json
 
+  def index2
+    sortb = filtering_params[:sort] || 'alpha'
+    puts "#{sortb}"
+    @polls = Poll.send(sortb)
+    @polls = @polls.select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes').joins(:candidates).group('polls.id')
+    render component: 'PollIndex', props: { polls: @polls }, class: 'index'
+  end
+
   def index
     @polls = Poll.select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes').joins(:candidates).group('polls.id')
     render component: 'PollIndex', props: { polls: @polls }, class: 'index'
@@ -69,6 +77,10 @@ class PollsController < ApplicationController
   end
 
   private
+    def filtering_params
+      params.slice(:sort)
+    end
+
     def new_choice_params
       params.require(:poll).permit(candidates_attributes: [:name])
     end

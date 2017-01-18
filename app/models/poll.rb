@@ -6,6 +6,10 @@ class Poll < ActiveRecord::Base
   accepts_nested_attributes_for :candidates, allow_destroy: true
   validates_associated :candidates
 
+  scope :alpha, -> { order(title: :asc) }
+  scope :newest, -> { order(created_at: :desc)}
+
+
   def vote_for(candidate)
     puts "voting for: #{candidate}"
     if self.candidates.exists?(candidate) 
