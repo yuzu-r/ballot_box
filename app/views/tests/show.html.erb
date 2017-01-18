@@ -1,0 +1,9 @@
+<h1>test page </h1>
+<%= debug @test_data %>
+<%= debug @hi %>
+<%= react_component 'Test', {data: @test_data} %>
+<script>
+  console.log('testing');
+  //new Chartkick.PieChart("chart-1", [["Blueberry", 50], ["Strawberry", 50]]);
+  // this works. react_component 'Test', {data: {"Blueberry": 44, "Strawberry": 23}} 
+</script>

@@ -19,6 +19,8 @@
 //= require components
 //= require_tree .
 //= require bootstrap-sprockets
+//= require ./vendor/Chart.bundle-v2.4.0
+//= require ./vendor/chartkick-v2.2.2
 ReactRailsUJS.handleEvent('turbolinks:before-cache', function() {
   window.ReactRailsUJS.unmountComponents();
 });

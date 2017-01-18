@@ -8,6 +8,7 @@
 
 .poll-index-item{
   background: lightyellow;
+  margin: 5px;
 }
 
 .poll-index-item:hover {
@@ -37,4 +38,11 @@ button:disabled{
 
 .add-candidate{
   background: lightgreen;
+}
+
+.poll-detail{
+  background: pink;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
 }

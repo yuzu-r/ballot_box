@@ -11,13 +11,6 @@ class PollsController < ApplicationController
   def owner_index
     @polls = user_signed_in? ? current_user.polls.alpha : nil
     render component: 'PollIndex', props: { polls: @polls }, class: 'index'
-    #if user_signed_in?
-    #  @polls = current_user.polls.alpha
-    #  puts "still ok!"
-    #  render component: 'PollIndex', props: { polls: @polls }, class: 'index'
-    #else
-    #  @polls = nil
-    #end
   end
 
   def show
@@ -37,7 +30,8 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
     if @poll.save
       flash[:notice] = 'Poll Created!'
-      respond_with @poll
+      respond_with @poll 
+      #render json: {:poll => @poll} will thsi work
     else
       logger.info 'it errored'
       logger.info @poll.errors
@@ -47,7 +41,6 @@ class PollsController < ApplicationController
   end
 
   def destroy
-    #respond_with Poll.destroy(params[:id])
     Poll.destroy(params[:id])
     redirect_to dashboard_path
   end
