@@ -2,15 +2,9 @@ class PollsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :add_option]
   respond_to :json
 
-  def index2
-    sortb = filtering_params[:sort] || 'alpha'
-    # check that sortb is valid scope (:alpha, :newest, :popular)
-    @polls = Poll.send(sortb)
-    render component: 'PollIndex', props: { polls: @polls }, class: 'index'
-  end
-
   def index
-    @polls = Poll.alpha
+    sort_by = filtering_params['sort'] || 'alpha'
+    @polls = Poll.send(sort_by)
     render component: 'PollIndex', props: { polls: @polls }, class: 'index'
   end
 
@@ -30,9 +24,7 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(poll_params)
     if @poll.save
-      logger.info 'it saved'
       flash[:notice] = 'Poll Created!'
-      logger.info @poll.errors
       respond_with @poll
     else
       logger.info 'it errored'
@@ -77,7 +69,8 @@ class PollsController < ApplicationController
 
   private
     def filtering_params
-      params.slice(:sort)
+      par = params.slice(:sort)
+      return ['alpha','newest','popular'].include?(par[:sort]) ? par : 'alpha'
     end
 
     def new_choice_params

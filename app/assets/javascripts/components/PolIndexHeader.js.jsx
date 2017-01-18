@@ -8,9 +8,9 @@ var PollIndexHeader = React.createClass({
             <span className="caret"></span>
           </button>
           <ul className="dropdown-menu">
-            <li><a href="#">All Polls</a></li>
-            <li><a href="#">Newest Polls</a></li>
-            <li><a href="#">Popular Polls</a></li>
+            <li><a href="/polls?sort=alpha">All Polls</a></li>
+            <li><a href="polls?sort=newest">Newest Polls</a></li>
+            <li><a href="polls?sort=popular">Popular Polls</a></li>
           </ul>
         </div>        
       </div>
