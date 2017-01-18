@@ -18,4 +18,17 @@ class Poll < ActiveRecord::Base
       return false
     end
   end
+
+  def create_and_vote_for(candidate)
+    puts "creating and casting vote for #{candidate}"
+    candidate_attrs = [].push(candidate)
+    candidate_attrs[0]['vote_count'] = 1
+    self.candidates_attributes = candidate_attrs
+    if self.save
+      return true
+    else
+      return false
+    end
+  end
+
 end

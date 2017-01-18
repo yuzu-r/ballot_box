@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :add_option]
   respond_to :json
 
   def index
@@ -51,7 +51,28 @@ class PollsController < ApplicationController
     end
   end
 
+  def add_choice
+    @poll = Poll.find(params[:id])
+    if @poll
+      result_of_custom = @poll.create_and_vote_for(new_choice_params['candidates_attributes'])
+      if result_of_custom
+        @candidates = @poll.candidates
+        render json: {:poll => @poll, :candidates => @candidates, :voted => true}
+      else
+        render json: {:poll => @poll.errors.add, status => :unprocessable_entity}
+      end
+    else
+      @poll.errors.add(:base,:invalid)
+      respond_with @poll, status: :unprocessable_entity
+    end
+
+  end
+
   private
+    def new_choice_params
+      params.require(:poll).permit(candidates_attributes: [:name])
+    end
+
     def poll_params
       params.require(:poll).permit(:title, :description, :user_id, candidates_attributes: [:id, :name, :vote_count, :_destroy])
     end
