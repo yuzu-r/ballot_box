@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   patch 'polls/:id/add', to: 'polls#add_choice'
   get 'users/polls', to: 'polls#owner_index'
   get 'test/:poll_id', to: 'candidates#test'
+  get 'poll_results/:poll_id', to: 'candidates#poll_results'
 end

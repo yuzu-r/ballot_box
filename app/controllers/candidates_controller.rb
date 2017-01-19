@@ -1,5 +1,5 @@
 class CandidatesController < ApplicationController
-  respond_to :json, :html
+  respond_to :json #, :html
   def show
     @candidate = Candidate.find(params[:id])
     respond_with @candidate
@@ -15,12 +15,18 @@ class CandidatesController < ApplicationController
 
   def test
     @test_data = Candidate.build_data(params[:poll_id])
-    puts "here is : #{@test_data}"
-    respond_to do |format|
-      format.html # show.html.erb
+    puts "from test, here is : #{@test_data}"
+    respond_with @test_data
+    #respond_to do |format|
+    #  format.html # show.html.erb
       #format.json { render json: @poll }
-    end
+    #end
+  end
 
+  def poll_results
+    @test_data = Candidate.build_data(params[:poll_id])
+    puts "poll_results: here is : #{@test_data}"
+    render json: @test_data
   end
 
   private

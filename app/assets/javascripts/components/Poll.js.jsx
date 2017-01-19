@@ -78,7 +78,6 @@ var Poll = React.createClass({
       });     
   },
   render(){
-    console.log('rendering', this.state.voted)
     var candidates = this.state.candidates.map((c) => {
       return (
         <Candidate key={c.id} choice={c} handleVote={this.handleVote} voted={this.state.voted} />
@@ -88,9 +87,6 @@ var Poll = React.createClass({
     if (this.props.user && !this.state.voted) {
       console.log('I should add a button to add choices')
       addCandidate = <button disabled={this.state.editMode} onClick={this.handleAddCandidate}>Add Another Choice</button>
-    }
-    else {
-      console.log('I should not add a button');
     }
     var customCandidate = null;
     if (this.state.editMode) {
@@ -105,12 +101,17 @@ var Poll = React.createClass({
                         </button>
                         </div>;
     };
+    var chartResults = null;
+    if (this.state.voted){
+      chartResults = <PollChart poll_id={this.state.poll.id} />
+    }
     return (
       <div className='col-xs-10 col-xs-offset-1'>
         <h3>{this.state.poll.title}</h3>
         {candidates}
         <div className='add-candidate'>{addCandidate}</div>
         {customCandidate}
+        {chartResults}
       </div>
     )
   }

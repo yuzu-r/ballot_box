@@ -1,7 +1,7 @@
 var Test = React.createClass({
   render(){
     return (
-      React.DOM.div({id: 'chart-2', style: {height: "200px"}})
+      React.DOM.div({id: 'chart'})
     );
   },
   componentDidMount: function(){
@@ -11,7 +11,9 @@ var Test = React.createClass({
     this.drawCharts();
   },
   drawCharts: function(){
-    var data = this.props.data;
-    new Chartkick.PieChart("chart-2", data);
+    //var data = this.props.data;
+    var data = {"Blueberry": 44, "Strawberry": 23}
+    console.log(data);
+    new Chartkick.PieChart('chart', data, {legend: 'bottom'});
   }  
 });
