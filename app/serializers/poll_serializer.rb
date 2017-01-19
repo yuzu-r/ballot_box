@@ -3,14 +3,6 @@ class PollSerializer < ActiveModel::Serializer
   attributes :id, :title, :created_at, :total_votes
   has_many :candidates
 
-  def total_votes
-    sum = 0
-    object.candidates.each do |c|
-      sum += c.vote_count
-    end
-    sum
-  end
-
   def title
     object.title.upcase
   end

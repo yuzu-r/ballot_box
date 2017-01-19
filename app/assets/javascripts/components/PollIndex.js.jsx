@@ -9,6 +9,7 @@ var PollIndex = React.createClass({
     Turbolinks.visit('/polls/'+poll.id);
   },
   render(){
+    console.log(this.state.polls[0])
     var polls = this.state.polls.map((p) => {
       return (
         <PollItem key={p.id} item={p} showPoll={this.showPoll} />
