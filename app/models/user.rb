@@ -4,5 +4,5 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :polls
-  #has_many :candidates, through: :polls
+  has_many :candidates, :through => :polls
 end

@@ -30,18 +30,19 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
     if @poll.save
       flash[:notice] = 'Poll Created!'
-      respond_with @poll 
-      #render json: {:poll => @poll} will thsi work
+      render json: {:poll => @poll} 
     else
       logger.info 'it errored'
       logger.info @poll.errors
       @poll.errors.add(:base, :invalid)
-      respond_with @poll, status: :unprocessable_entity
+      flash[:warning] = 'There was an error. Poll not created.'
+      render json: {:poll => @poll.errors, status: :unprocessable_entity}
     end
   end
 
   def destroy
     Poll.destroy(params[:id])
+    flash[:notice] = 'Poll Deleted.'
     redirect_to dashboard_path
   end
 

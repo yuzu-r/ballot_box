@@ -2,7 +2,7 @@ var NewPollContainer = React.createClass({
   getDefaultProps: function(){
     return (
       { 
-        blankCandidate: {name: '', description: ''}
+        blankCandidate: {name: ''}
       }
     )
   },
@@ -48,9 +48,21 @@ var NewPollContainer = React.createClass({
                     user_id: this.props.user.id,
                     candidates_attributes: this.state.candidates
                   } 
-          }, 
-        success: (response) => { console.log('it worked!', response); }
-      }); 
+        }, 
+        success: (response) => {          
+          if (response.success) {
+            console.log('it worked!');
+            Turbolinks.visit('/polls/' + response.poll.id);
+          }
+          else {
+            console.log('response received, but it was not saved successfully',response);
+          }
+        },
+        fail: (response) => {
+          console.log('poll creation faild!', response.responseText);
+        }
+      });
+      return false; 
   },
   handleTitleChange: function(e){
     var title = e.target.value;

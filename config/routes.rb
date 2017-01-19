@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :polls
-  resources :candidates
+  #resources :candidates
   resource :dashboard, only: [:show]
   root 'polls#index'
   patch 'polls/:id/vote', to: 'polls#vote'
