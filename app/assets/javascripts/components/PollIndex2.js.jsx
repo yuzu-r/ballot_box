@@ -1,4 +1,4 @@
-var PollIndex = React.createClass({
+var PollIndex2 = React.createClass({
   getInitialState(){
     return {
       polls: this.props.polls.polls
@@ -9,9 +9,13 @@ var PollIndex = React.createClass({
     Turbolinks.visit('/polls/'+poll.id);
   },
   render(){
-    var polls = this.state.polls.map((p) => {
+    console.log(this.state.polls)
+    //console.log('polls polls',this.state.polls.polls)
+    //console.log('polls polls',this.state.polls.polls[0].title)
+    var polls = null;
+    polls = this.state.polls.map((p) => {
       return (
-        <PollItem key={p.id} item={p} showPoll={this.showPoll} />
+        <p key={p.id}>{p.title}</p>
       )
     });
     return (    

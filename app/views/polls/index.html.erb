@@ -1,4 +1,4 @@
 <h2>this is the polls index page </h2>
 <% debug(@polls) %>
-<%= react_component 'PollIndex', {polls: @polls},{prerender: true} %>
+<%= react_component 'PollIndex', {polls: @polls.to_json},{prerender: true} %>
 

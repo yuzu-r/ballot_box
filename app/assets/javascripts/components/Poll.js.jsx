@@ -6,6 +6,7 @@ var Poll = React.createClass({
     )
   },
   getInitialState(){
+    console.log(this.props.poll);
     return (
       {
         voted: false,

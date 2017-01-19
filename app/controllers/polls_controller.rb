@@ -5,7 +5,12 @@ class PollsController < ApplicationController
   def index
     sort_by = filtering_params['sort'] || 'alpha'
     @polls = Poll.send(sort_by)
-    render component: 'PollIndex', props: { polls: @polls }, class: 'index'
+    #render json: @polls
+    @polls_json = ActiveModelSerializers::SerializableResource.new(@polls).as_json
+    puts "#{@polls_json}"
+    #render component: 'PollIndex', props: { polls: @polls.as_json }, class: 'index'
+    #render component: 'PollIndex', props: {polls: @polls_json}, class: 'index' #this gives right answer though it fails
+    render component: 'PollIndex', props: {polls: @polls_json}, class: 'index'
   end
 
   def owner_index
@@ -14,12 +19,13 @@ class PollsController < ApplicationController
   end
 
   def show
-    @poll = Poll.find(params[:id])
+    @poll = Poll.find(params[:id]) 
     @candidates = @poll.candidates
-    respond_to do |format|
-      format.html # show.html.erb
-      #format.json { render json: @poll }
-     end
+    render json: @poll
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @poll }
+    # end
   end
 
   def new
