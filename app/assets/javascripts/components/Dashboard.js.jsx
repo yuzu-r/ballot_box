@@ -1,7 +1,7 @@
 var Dashboard = React.createClass({
   getInitialState() {
     return (
-      {polls: this.props.polls}
+      {polls: this.props.polls.polls}
     )
   },
   deletePoll(poll){
@@ -21,7 +21,8 @@ var Dashboard = React.createClass({
 
     return (
       <div>
-        <h1>hi</h1>
+        <h1>My Polls</h1>
+        <a href='/'>See all polls</a>
         {polls}
       </div>
     )

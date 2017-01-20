@@ -1,10 +1,10 @@
 var PollIndexHeader = React.createClass({
   render(){
     return (
-      <div className='col-xs-10 col-xs-offset-1'>
+      <div className='col-xs-8 col-xs-offset-2'>
         <div className='btn-group btn-block '>
-          <button type='button' className='btn btn-primary text-left col-xs-9'>All Polls</button>
-          <button type='button' className='btn btn-primary col-xs-1 col-xs-offset-2 dropdown-toggle' aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+          <button type='button' className='btn btn-primary text-left col-xs-10'>All Polls</button>
+          <button type='button' className='btn btn-primary col-xs-2 col-xs-offset-10 dropdown-toggle' aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
             <span className="caret"></span>
           </button>
           <ul className="dropdown-menu">

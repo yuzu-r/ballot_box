@@ -5,17 +5,14 @@ class PollsController < ApplicationController
   def index
     sort_by = filtering_params['sort'] || 'alpha'
     @polls = Poll.send(sort_by)
-    #render json: @polls
     @polls_json = ActiveModelSerializers::SerializableResource.new(@polls).as_json
-    puts "#{@polls_json}"
-    #render component: 'PollIndex', props: { polls: @polls.as_json }, class: 'index'
-    #render component: 'PollIndex', props: {polls: @polls_json}, class: 'index' #this gives right answer though it fails
     render component: 'PollIndex', props: {polls: @polls_json}, class: 'index'
   end
 
   def owner_index
     @polls = user_signed_in? ? current_user.polls.alpha : nil
-    render component: 'PollIndex', props: { polls: @polls }, class: 'index'
+    @polls_json = ActiveModelSerializers::SerializableResource.new(@polls).as_json
+    render component: 'PollIndex', props: { polls: @polls_json }, class: 'index'
   end
 
   def show
