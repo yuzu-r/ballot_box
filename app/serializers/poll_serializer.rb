@@ -10,4 +10,14 @@ class PollSerializer < ActiveModel::Serializer
   def created_at
     time_ago_in_words(object.created_at) + ' ago'
   end
+
+  def total_votes
+    if !@instance_options[:total_votes]
+      sum = 0
+      object.candidates.each do |c|
+        sum += c.vote_count
+      end
+      sum      
+    end
+  end
 end

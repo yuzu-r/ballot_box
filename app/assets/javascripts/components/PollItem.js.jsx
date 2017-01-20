@@ -1,5 +1,6 @@
 var PollItem = React.createClass({
   render(){
+    console.log(this.props.item)
     return (
       <div className='col-xs-8 col-xs-offset-2 poll-index-item' onClick={this.props.showPoll.bind(null,this.props.item)}>
         <h5>{this.props.item.title}</h5>

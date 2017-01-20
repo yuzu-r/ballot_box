@@ -26,6 +26,7 @@ class Poll < ActiveRecord::Base
       vote_count = c.vote_count + 1
       c.update(vote_count: vote_count)
       # to-do: return a cookie to mark the time that the user voted
+      #cookies[:poll] = self.id
       return true
     else
       return false

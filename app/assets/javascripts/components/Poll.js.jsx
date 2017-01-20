@@ -6,22 +6,18 @@ var Poll = React.createClass({
     )
   },
   getInitialState(){
-    console.log(this.props.poll);
     return (
       {
         voted: false,
-        candidates: this.props.candidates,
-        poll: this.props.poll,
+        candidates: this.props.poll.poll.candidates,
+        poll: this.props.poll.poll,
         editMode: false,
         customCandidate: ''
       }
     )
   },
-  componentDidMount() {
-  },
   handleAddCandidate() {
     // add an input box for a new option
-    console.log('I should add a candidate');
     this.setState(
       { editMode: true}
     )
@@ -34,10 +30,9 @@ var Poll = React.createClass({
     )
   },
   handlePostNewCandidate(name,e) {
-    console.log('voting a custom choice', name);
     $.ajax(
       {
-        url: '/polls/' + this.props.poll.id + '/add',
+        url: '/polls/' + this.state.poll.id + '/add',
         type: 'PATCH',
         data: {
                 poll: {
@@ -45,7 +40,6 @@ var Poll = React.createClass({
                       }
               },
         success: (response) => {
-          console.log('voted custom!', response);
           this.setState(
             {
               candidates: response.candidates,
@@ -58,8 +52,9 @@ var Poll = React.createClass({
   },
   handleVote(candidate, e) {
     console.log('voting for', candidate.id);
+    console.log('pollid', this.state.poll.id);
     $.ajax(
-      { url: '/polls/' + this.props.poll.id + '/vote', 
+      { url: '/polls/' + this.state.poll.id + '/vote', 
         type: 'PATCH', 
         data: { 
             poll: {  

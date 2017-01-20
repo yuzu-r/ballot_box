@@ -17,12 +17,8 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id]) 
-    @candidates = @poll.candidates
-    render json: @poll
-    #respond_to do |format|
-    #  format.html # show.html.erb
-    #  format.json { render json: @poll }
-    # end
+    @poll_json = ActiveModelSerializers::SerializableResource.new(@poll).as_json
+    render component: 'Poll', props: {poll: @poll_json, user: current_user}
   end
 
   def new
@@ -33,7 +29,7 @@ class PollsController < ApplicationController
     @poll = Poll.new(poll_params)
     if @poll.save
       flash[:notice] = 'Poll Created!'
-      render json: {:poll => @poll} 
+      render json: {:poll => @poll, status: :success} 
     else
       logger.info 'it errored'
       logger.info @poll.errors

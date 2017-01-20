@@ -50,7 +50,8 @@ var NewPollContainer = React.createClass({
                   } 
         }, 
         success: (response) => {          
-          if (response.success) {
+          // this is terrible
+          if (response.status === 'success') {
             console.log('it worked!');
             Turbolinks.visit('/polls/' + response.poll.id);
           }

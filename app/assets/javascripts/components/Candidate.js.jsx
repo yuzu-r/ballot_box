@@ -1,9 +1,7 @@
 var Candidate = React.createClass({
   render(){
-    var voteCountText = null;
-    
-    voteCountText='( ' + this.props.choice.vote_count + ' votes)';
-    
+    var voteCountText = null;  
+    voteCountText=' (' + this.props.choice.vote_count + ' votes)';
     console.log('in candidate, voted is', this.props.voted)
     return (
       <div className='col-xs-10 col-xs-offset-1'>
