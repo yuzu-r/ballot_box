@@ -6,7 +6,9 @@ class PollsController < ApplicationController
     sort_by = filtering_params['sort'] || 'alpha'
     @polls = Poll.send(sort_by)
     @polls_json = ActiveModelSerializers::SerializableResource.new(@polls).as_json
-    render component: 'PollIndex', props: {polls: @polls_json}, class: 'index'
+    render component: 'PollIndex', props: { polls: @polls_json, 
+                                            signedIn: user_signed_in?, 
+                                            sortBy: sort_by}, class: 'index'
   end
 
   def owner_index

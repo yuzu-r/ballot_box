@@ -2,22 +2,85 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/*
+font-family: 'Kalam', cursive;
+font-family: 'Itim', cursive;
+font-family: 'Lato', sans-serif;
+*/
+
+$poll_item_color: #EBF2FA;
+$poll_item_selected_color: #F5FEEB;
+$navbar-color: #0B3C49;
+$well-color: #F5FEEB;
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+.well{
+  background-color: $well-color;
+}
+
+.navbar{
+  background: $navbar-color;
+}
+
+.navbar-brand {
+  font-family: 'Kalam', cursive;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+a.navbar-brand {
+  color: $well-color;
+}
+
 .poll-index-header{
   background: orange;
 }
 
+.poll-sort-button {
+  float: right;
+  margin-bottom: 6px;
+}
+
 .poll-index-item{
-  background: lightyellow;
+  background: $poll_item_color;
   margin-bottom: 5px;
+  border-style: outset;
+  display: table;
+  border-radius: 12px;
+}
+
+.poll-index-item:active{
+  border-style: inset;
+}
+
+.poll-info {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 4px;
 }
 
 .poll-index-item:hover {
-  background: lightgray;
+  background: $poll_item_selected_color;
   cursor: pointer;
 }
 
-.long-button{
-  width: 90%;
+.poll-title{
+  font-size: 20px;
+  font-style: bold;
+  font-family: 'Kalam', cursive;
+}
+
+.poll-detail-text{
+ font-family: 'Itim', cursive; 
+}
+
+.poll-item-icon{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
 }
 
 .title{
