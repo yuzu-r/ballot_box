@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/*
+/* raisin black: 242038; eerie black 1B1829; not bad could be more contrast 392F5A
 font-family: 'Kalam', cursive;
 font-family: 'Itim', cursive;
 font-family: 'Lato', sans-serif;
@@ -10,11 +10,28 @@ font-family: 'Lato', sans-serif;
 
 $poll_item_color: #EBF2FA;
 $poll_item_selected_color: #F5FEEB;
-$navbar-color: #0B3C49;
+$navbar-color: #1B1829;
 $well-color: #F5FEEB;
 
 body{
   font-family: 'Lato', sans-serif;
+}
+
+.poll{
+  background-color: $poll_item_color;
+  border-radius: 12px;  
+}
+
+.poll > h3{
+  font-family: 'Kalam', cursive;
+}
+
+.display-candidate > span.h3 {
+  font-family: 'Kalam', cursive; 
+}
+
+.display-candidate > span.h4 {
+  font-family: 'Itim', cursive;
 }
 
 .well{
@@ -47,13 +64,13 @@ a.navbar-brand {
 .poll-index-item{
   background: $poll_item_color;
   margin-bottom: 5px;
-  border-style: outset;
+  /* border-style: outset; */
   display: table;
   border-radius: 12px;
 }
 
 .poll-index-item:active{
-  border-style: inset;
+  /* border-style: inset; */
 }
 
 .poll-info {

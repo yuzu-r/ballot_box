@@ -102,12 +102,15 @@ var Poll = React.createClass({
       chartResults = <PollChart poll_id={this.state.poll.id} />
     }
     return (
-      <div className='col-xs-10 col-xs-offset-1'>
+      <div className='col-xs-10 col-xs-offset-1 poll'>
         <h3>{this.state.poll.title}</h3>
-        {candidates}
-        <div className='add-candidate'>{addCandidate}</div>
-        {customCandidate}
+        <div>
+          {candidates}
+          <div className='add-candidate'>{addCandidate}</div>
+          {customCandidate}
+        </div>
         {chartResults}
+
       </div>
     )
   }

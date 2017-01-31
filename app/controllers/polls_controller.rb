@@ -68,7 +68,7 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
     if @poll
       result_of_custom = @poll.create_and_vote_for(new_choice_params['candidates_attributes'])
-      cookies[:vote] = result_of_vote
+      cookies[:vote] = result_of_custom
       if result_of_custom
         @candidates = @poll.candidates
         render json: {:poll => @poll, :candidates => @candidates, :voted => true}
