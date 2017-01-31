@@ -8,8 +8,10 @@ var NewPollContainer = React.createClass({
   },
   getInitialState: function(){
     return( 
-      {title: '',
-      candidates: this.props.blanks}
+      { title: '',
+        candidates: this.props.blanks,
+        feedback: ''
+      }
     )
   },
   handleCancelPollCreate: function(){
@@ -59,7 +61,7 @@ var NewPollContainer = React.createClass({
             console.log('response received, but it was not saved successfully',response);
           }
         },
-        fail: (response) => {
+        error: (response) => {
           console.log('poll creation faild!', response.responseText);
         }
       });
@@ -79,7 +81,10 @@ var NewPollContainer = React.createClass({
   },
   validCandidates: function(){
     // poll requires at least two candidates to be valid
+    // and the poll cannot have duplicate candidates
     var candidates = this.state.candidates;
+    var candidateList = candidates.map(c => c.name);
+    var uniqueCandidates = [...new Set(candidateList)];
     var validCounter=0;
     for (var i = 0; i < candidates.length; i++) {
       if (candidates[i].name.length > 0) {
@@ -87,7 +92,7 @@ var NewPollContainer = React.createClass({
       }
     }
     return (
-      candidates.length > 1 && validCounter > 1
+      candidates.length > 1 && validCounter > 1 && candidates.length == uniqueCandidates.length
     )
   },
   validTitle: function(){

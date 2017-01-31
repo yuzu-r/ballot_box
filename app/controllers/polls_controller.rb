@@ -27,14 +27,18 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new(poll_params)
-    if @poll.save
+    begin @poll.save!
+      if @poll.valid?
       flash[:notice] = 'Poll Created!'
       render json: {:poll => @poll, status: :success} 
-    else
-      logger.info 'it errored'
-      logger.info @poll.errors
-      @poll.errors.add(:base, :invalid)
-      flash[:warning] = 'There was an error. Poll not created.'
+      end
+    rescue ActiveRecord::RecordNotUnique => e
+      puts 'I am being rescud'
+      @poll.errors.add(:base, 'duplicate candidate name')
+      render json: {:poll => @poll.errors, status: :unprocessable_entity}
+    rescue => e
+      @poll.errors.add(:base, 'error in poll create')
+      logger.error { "#{e.message} #{e.backtrace.join("\n")}"}
       render json: {:poll => @poll.errors, status: :unprocessable_entity}
     end
   end
@@ -49,6 +53,7 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
     if @poll
       result_of_vote = @poll.vote_for(poll_params['candidates_attributes']['id'])
+      cookies[:vote] = result_of_vote
       @candidates = @poll.candidates
       render json: {:poll => @poll, :candidates => @candidates, :voted => true}
     else
@@ -61,6 +66,7 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
     if @poll
       result_of_custom = @poll.create_and_vote_for(new_choice_params['candidates_attributes'])
+      cookies[:vote] = result_of_vote
       if result_of_custom
         @candidates = @poll.candidates
         render json: {:poll => @poll, :candidates => @candidates, :voted => true}

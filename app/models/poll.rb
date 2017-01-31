@@ -5,7 +5,7 @@ class Poll < ActiveRecord::Base
   validates :user, presence: true
   accepts_nested_attributes_for :candidates, allow_destroy: true
   validates_associated :candidates
-
+  
   scope :alpha, -> {select('polls.id,polls.title, polls.created_at, sum(candidates.vote_count) as total_votes')
                         .joins(:candidates)
                         .group('polls.id')
