@@ -1,22 +1,25 @@
 var Candidate = React.createClass({
   render(){
-    var voteCountText = null;  
-    var btnVote;
-    btnVote = <button disabled={this.props.voted} 
-                      onClick={this.props.handleVote.bind(null,this.props.choice)}
-                      className='btn btn-default btn-small'
-                      >Vote Me
-              </button>
+    // this.props.voted, this.props.handleVote.bind(null, this.props.choice)
+    // this.props.choice.vote_count, this.props.choice.name
+    var elCandidate=null;
     if (this.props.voted) {
-      voteCountText=' (' + this.props.choice.vote_count + ' votes)';  
-      btnVote = null;
+      var voteText = this.props.choice.name + ' (' + this.props.choice.vote_count + ' votes)';
+      elCandidate = <span className='h4'>
+                      {voteText}
+                    </span>;
+    }
+    else {
+      elCandidate = <button  
+                      onClick={this.props.handleVote.bind(null,this.props.choice)}
+                      className='btn btn-default btn-small'>
+                      {this.props.choice.name}
+                    </button>;
     }
     //console.log('in candidate, voted is', this.props.voted)
     return (
       <div className='display-candidate'>
-        <span className='h4'>{this.props.choice.name}</span>
-        <span className='h4'>{voteCountText}</span>
-        {btnVote}
+        {elCandidate}
       </div>
     )
   }

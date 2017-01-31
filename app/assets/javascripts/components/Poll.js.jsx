@@ -81,17 +81,21 @@ var Poll = React.createClass({
     });
     var addCandidate = null;
     if (this.props.user && !this.state.voted) {
-      console.log('I should add a button to add choices')
-      addCandidate = <button disabled={this.state.editMode} onClick={this.handleAddCandidate}>Add Another Choice</button>
+      //console.log('I should add a button to add choices')
+      addCandidate = <button disabled={this.state.editMode} 
+                             onClick={this.handleAddCandidate}
+                             className='btn btn-info'>Add Another Choice</button>
     }
     var customCandidate = null;
     if (this.state.editMode) {
       customCandidate = <div className='candidate'>
                         <input placeholder='enter custom name' 
                           value={this.state.customCandidate}
-                          onChange={this.handleCustomCandidateEntry}>
+                          onChange={this.handleCustomCandidateEntry}
+                          className='form-control'>
                         </input>
                         <button 
+                          className='btn btn-primary'
                           onClick={this.handlePostNewCandidate.bind(null,this.state.customCandidate)}>
                           Vote Custom Choice
                         </button>
@@ -106,7 +110,10 @@ var Poll = React.createClass({
         <h3>{this.state.poll.title}</h3>
         <div>
           {candidates}
-          <div className='add-candidate'>{addCandidate}</div>
+          <div className='add-candidate'>
+            <br />
+            {addCandidate}
+          </div>
           {customCandidate}
         </div>
         {chartResults}
