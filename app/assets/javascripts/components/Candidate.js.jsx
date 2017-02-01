@@ -12,7 +12,7 @@ var Candidate = React.createClass({
     else {
       elCandidate = <button  
                       onClick={this.props.handleVote.bind(null,this.props.choice)}
-                      className='btn btn-default btn-small'>
+                      className='btn btn-default btn-small btn-candidate'>
                       {this.props.choice.name}
                     </button>;
     }

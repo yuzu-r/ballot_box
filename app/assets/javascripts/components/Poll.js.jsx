@@ -12,7 +12,8 @@ var Poll = React.createClass({
         candidates: this.props.poll.poll.candidates,
         poll: this.props.poll.poll,
         editMode: false,
-        customCandidate: ''
+        customCandidate: '',
+        validPoll: false
       }
     )
   },
@@ -23,9 +24,15 @@ var Poll = React.createClass({
     )
   },
   handleCustomCandidateEntry(e){
+    // evaluate whether the custom entry is a duplicate of anything else
+    var customCandidate = e.target.value;
+    var candidateList = this.state.candidates.map(c => c.name);
+    var duplicateFound = candidateList.indexOf(customCandidate) > -1;
+    var emptyString = customCandidate.length === 0;
     this.setState(
       {
-        customCandidate: e.target.value
+        customCandidate: customCandidate,
+        validPoll: !duplicateFound && !emptyString
       }
     )
   },
@@ -51,15 +58,15 @@ var Poll = React.createClass({
       })
   },
   handleVote(candidate, e) {
-    console.log('voting for', candidate.id);
-    console.log('pollid', this.state.poll.id);
+    //console.log('voting for', candidate.id);
+    //console.log('pollid', this.state.poll.id);
     $.ajax(
       { url: '/polls/' + this.state.poll.id + '/vote', 
         type: 'PATCH', 
         data: { 
-            poll: {  
-                    candidates_attributes: {id: candidate.id}
-                  } 
+          poll: {  
+                  candidates_attributes: {id: candidate.id}
+                } 
           }, 
         success: (response) => { 
           console.log('I voted!', response); 
@@ -88,26 +95,20 @@ var Poll = React.createClass({
     }
     var customCandidate = null;
     if (this.state.editMode) {
-      customCandidate = <div className='candidate'>
-                        <input placeholder='enter custom name' 
-                          value={this.state.customCandidate}
-                          onChange={this.handleCustomCandidateEntry}
-                          className='form-control'>
-                        </input>
-                        <button 
-                          className='btn btn-primary'
-                          onClick={this.handlePostNewCandidate.bind(null,this.state.customCandidate)}>
-                          Vote Custom Choice
-                        </button>
-                        </div>;
+      customCandidate = <CustomCandidate 
+                            value={this.state.customCandidate}
+                            onCustomCandidateEntry={this.handleCustomCandidateEntry}
+                            onPostNewCandidate={this.handlePostNewCandidate}
+                            validPoll={this.state.validPoll} />
     };
     var chartResults = null;
     if (this.state.voted){
       chartResults = <PollChart poll_id={this.state.poll.id} />
     }
     return (
-      <div className='col-xs-10 col-xs-offset-1 poll'>
+      <div className='col-xs-8 col-xs-offset-2 poll'>
         <h3>{this.state.poll.title}</h3>
+        <p>Click on one of the choices below to vote and see results.</p>
         <div>
           {candidates}
           <div className='add-candidate'>
@@ -117,7 +118,6 @@ var Poll = React.createClass({
           {customCandidate}
         </div>
         {chartResults}
-
       </div>
     )
   }
