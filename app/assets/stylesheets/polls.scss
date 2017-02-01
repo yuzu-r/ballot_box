@@ -1,3 +1,168 @@
 // Place all the styles related to the Polls controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* raisin black: 242038; eerie black 1B1829; not bad could be more contrast 392F5A
+font-family: 'Kalam', cursive;
+font-family: 'Itim', cursive;
+font-family: 'Lato', sans-serif;
+*/
+
+$poll-item-color: #EBF2FA;
+$poll-item-selected-color: #F5FEEB;
+$navbar-color: #1B1829;
+$well-color: #F5FEEB;
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+.poll{
+  background-color: $poll-item-color;
+  border-radius: 12px;  
+}
+
+.poll > h3{
+  font-family: 'Kalam', cursive;
+}
+
+.dashboard h3{
+  font-family: 'Kalam', cursive; 
+}
+
+.dashboard-item {
+  background-color: $poll-item-color;
+  border-radius: 12px;   
+  margin-bottom: 10px;
+  padding-left: 12px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.dashboard-item > h4{ 
+  font-family: 'Kalam', cursive; 
+}
+
+.dashboard-item-text {
+  font-family: 'Itim', cursive;  
+  background-color: $poll-item-color;
+  text-align: left;
+  margin-right: 20px;
+}
+
+.display-candidate > span.h3 {
+  font-family: 'Kalam', cursive; 
+}
+
+.display-candidate > span.h4 {
+  font-family: 'Itim', cursive;
+}
+
+.poll-detail > h3 {
+  font-family: 'Kalam', cursive;   
+}
+
+.well{
+  background-color: $well-color;
+}
+
+.navbar{
+  background: $navbar-color;
+}
+
+.navbar-brand {
+  font-family: 'Kalam', cursive;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+a.navbar-brand {
+  color: $well-color;
+}
+
+.poll-index-header{
+  background: orange;
+}
+
+.poll-sort-button {
+  float: right;
+  margin-bottom: 6px;
+}
+
+.poll-index-item{
+  background: $poll-item-color;
+  margin-bottom: 5px;
+  display: table;
+  border-radius: 12px;
+}
+
+.poll-info {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 4px;
+}
+
+.poll-index-item:hover {
+  background: $poll-item-selected-color;
+  cursor: pointer;
+}
+
+.poll-title{
+  font-size: 20px;
+  font-style: bold;
+  font-family: 'Kalam', cursive;
+}
+
+.poll-detail-text{
+ font-family: 'Itim', cursive; 
+}
+
+.poll-item-icon{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: right;
+}
+
+.title{
+  background: lightblue;
+}
+
+.candidate{
+  margin-bottom: 6px;
+}
+
+.buttonArray {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+button:disabled{
+  background: darkgrey;
+}
+
+.add-candidate{
+  margin-bottom: 10px;
+}
+
+.btn-candidate {
+  margin-bottom: 4px;
+}
+
+.btn-custom-candidate {
+  margin-left: 4px;
+}
+
+.input-poll-title{
+  margin-bottom: 10px;  
+}
+
+.poll-detail{
+  background: pink;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+}
+
+.chart {
+  height: 200px;
+}

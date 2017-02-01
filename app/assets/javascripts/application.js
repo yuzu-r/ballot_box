@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+// The addition below supresses warning when moving around app with rails routes and react.
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
@@ -18,3 +19,8 @@
 //= require components
 //= require_tree .
 //= require bootstrap-sprockets
+//= require ./vendor/Chart.bundle-v2.4.0
+//= require ./vendor/chartkick-v2.2.2
+ReactRailsUJS.handleEvent('turbolinks:before-cache', function() {
+  window.ReactRailsUJS.unmountComponents();
+});
