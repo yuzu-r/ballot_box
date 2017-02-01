@@ -20,8 +20,8 @@ var Dashboard = React.createClass({
     });
 
     return (
-      <div>
-        <h1>My Polls</h1>
+      <div className='col-xs-8 col-xs-offset-2 dashboard' >
+        <h2>Poll Manager</h2>
         <a href='/'>See all polls</a>
         {polls}
       </div>

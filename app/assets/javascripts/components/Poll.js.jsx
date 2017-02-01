@@ -102,13 +102,15 @@ var Poll = React.createClass({
                             validPoll={this.state.validPoll} />
     };
     var chartResults = null;
+    var pollMessage = 'Click on one of the choices below to vote and see results.'
     if (this.state.voted){
       chartResults = <PollChart poll_id={this.state.poll.id} />
+      pollMessage = 'Thanks for voting!'
     }
     return (
       <div className='col-xs-8 col-xs-offset-2 poll'>
         <h3>{this.state.poll.title}</h3>
-        <p>Click on one of the choices below to vote and see results.</p>
+        <p>{pollMessage}</p>
         <div>
           {candidates}
           <div className='add-candidate'>

@@ -26,12 +26,33 @@ body{
   font-family: 'Kalam', cursive;
 }
 
+.dashboard h2, h3{
+  font-family: 'Kalam', cursive; 
+}
+
+.dashboard-item {
+  background-color: $poll_item_color;
+  border-radius: 12px;   
+}
+
+.dashboard-item > h3{ 
+  font-family: 'Kalam', cursive; 
+}
+
+.dashboard-item-text {
+  font-family: 'Itim', cursive;  
+}
+
 .display-candidate > span.h3 {
   font-family: 'Kalam', cursive; 
 }
 
 .display-candidate > span.h4 {
   font-family: 'Itim', cursive;
+}
+
+.poll-detail > h3 {
+  font-family: 'Kalam', cursive;   
 }
 
 .well{
@@ -64,13 +85,8 @@ a.navbar-brand {
 .poll-index-item{
   background: $poll_item_color;
   margin-bottom: 5px;
-  /* border-style: outset; */
   display: table;
   border-radius: 12px;
-}
-
-.poll-index-item:active{
-  /* border-style: inset; */
 }
 
 .poll-info {
@@ -105,11 +121,12 @@ a.navbar-brand {
 }
 
 .candidate{
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .buttonArray {
-  background: lightgreen;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 button:disabled{
@@ -131,6 +148,10 @@ button:disabled{
 
 .btn-custom-candidate {
   margin-left: 4px;
+}
+
+.input-poll-title{
+  margin-bottom: 10px;  
 }
 
 .poll-detail{

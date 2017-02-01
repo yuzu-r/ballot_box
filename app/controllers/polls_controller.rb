@@ -24,7 +24,7 @@ class PollsController < ApplicationController
   end
 
   def new
-    @poll = Poll.new
+    render component: 'NewPollContainer', props: {blanks: [{name: ''}, {name: ''}], user: current_user}
   end
 
   def create
