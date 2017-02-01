@@ -11,7 +11,6 @@ var PollChart = React.createClass({
       { url: '/poll_results/' + this.props.poll_id, 
         type: 'GET',
         success: (data) => { 
-          console.log('it worked!', data); 
           this.setState(
             {
               poll_results: data
@@ -25,12 +24,14 @@ var PollChart = React.createClass({
       });        
   },
   drawCharts: function(){
+    var elChartId = 'chart-' + this.props.poll_id;
     var data = this.state.poll_results;
-    new Chartkick.PieChart('chart2', data, {legend: 'bottom'});
+    new Chartkick.PieChart(elChartId, data, {legend: 'bottom'});
   },
   render: function(){
+    var elChartId = 'chart-' + this.props.poll_id;
     return (
-      React.DOM.div({id: 'chart2'})
+      React.DOM.div({id: elChartId, className: 'chart'})
     );
   },
 });

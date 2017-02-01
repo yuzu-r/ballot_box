@@ -13,7 +13,6 @@ var Dashboard = React.createClass({
     }); 
   },
   render(){
-    console.log(this.state.polls);
     var polls = this.state.polls.map((p) => {
       return (
         <PollDetail key={p.id} poll={p} deletePoll={this.deletePoll} />
