@@ -1,19 +1,21 @@
 var CustomCandidate = React.createClass({
   render(){
     return (
-      <div className='candidate'>
-        <input placeholder='enter custom name' 
+      <div className='candidate input-group'>
+        <input placeholder='enter custom option' 
                 value={this.props.value}
                 onChange={this.props.onCustomCandidateEntry}
                 className='form-control custom-candidate-input'>
         </input>
-        <button 
-            className='btn btn-primary btn-custom-candidate'
-            onClick={this.props.onPostNewCandidate.bind(null,this.props.value)}
-            disabled={!this.props.validPoll}
-            >
-            Vote Custom Choice
-        </button>
+        <div className='input-group-btn'>
+          <button 
+              className='btn btn-primary'
+              onClick={this.props.onPostNewCandidate.bind(null,this.props.value)}
+              disabled={!this.props.validPoll}
+              >
+              Vote Custom Option
+          </button>
+        </div>
       </div>
     )
   }

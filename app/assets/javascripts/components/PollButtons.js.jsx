@@ -4,7 +4,7 @@ var PollButtons = React.createClass({
     return (
       <div className='buttonArray'>
         <button onClick={this.props.handleNewCandidate}
-                className='btn btn-info'>Add New Choice</button>
+                className='btn btn-info'>Add New Option</button>
         <button onClick={this.props.handlePollCreate} 
                 disabled={!isEnabled}
                 className='btn btn-primary'>Save Poll</button>

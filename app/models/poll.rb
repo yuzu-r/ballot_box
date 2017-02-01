@@ -1,6 +1,6 @@
 class Poll < ActiveRecord::Base
   belongs_to :user
-  has_many :candidates, :dependent => :destroy
+  has_many :candidates, -> { order(:name) }, :dependent => :destroy
   validates :title, presence: true
   validates :user, presence: true
   accepts_nested_attributes_for :candidates, allow_destroy: true
@@ -20,7 +20,6 @@ class Poll < ActiveRecord::Base
                         .order('total_votes desc')}
 
   def vote_for(candidate)
-    puts "voting for: #{candidate}"
     if self.candidates.exists?(candidate) 
       c = self.candidates.find(candidate)
       vote_count = c.vote_count + 1

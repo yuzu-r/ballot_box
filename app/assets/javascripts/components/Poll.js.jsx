@@ -13,7 +13,7 @@ var Poll = React.createClass({
         poll: this.props.poll.poll,
         editMode: false,
         customCandidate: '',
-        validPoll: false
+        validPoll: false,
       }
     )
   },
@@ -91,7 +91,7 @@ var Poll = React.createClass({
       //console.log('I should add a button to add choices')
       addCandidate = <button disabled={this.state.editMode} 
                              onClick={this.handleAddCandidate}
-                             className='btn btn-info'>Add Another Choice</button>
+                             className='btn btn-info'>Add Another Option</button>
     }
     var customCandidate = null;
     if (this.state.editMode) {
@@ -106,7 +106,7 @@ var Poll = React.createClass({
     if (this.state.voted){
       chartResults = <PollChart poll_id={this.state.poll.id} />
       pollMessage = 'Thanks for voting!'
-    }
+    }   
     return (
       <div className='col-xs-8 col-xs-offset-2 poll'>
         <h3>{this.state.poll.title}</h3>

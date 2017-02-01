@@ -118,6 +118,8 @@ var NewPollContainer = React.createClass({
         <PollTitle title={this.state.title}
                     validTitle={this.validTitle} 
                     handleTitleChange={this.handleTitleChange} />
+        <span className='poll-detail-text'>Poll Options</span>
+        <br />
         {candidatesArray}
         <PollButtons isValid={isValid}
                     handleNewCandidate={this.handleNewCandidate}
