@@ -1,18 +1,15 @@
 var PollDetail = React.createClass({
   render(){
-    var voteInfo = 'Total Votes: ' + this.props.poll.total_votes + ', last voted on: ';
+    var voteInfo = 'Total votes: ' + this.props.poll.total_votes 
+                    + ', last vote: ' + this.props.poll.last_voted_on;
     return (
       <div className='dashboard-item'>
-        <h3>{this.props.poll.title}</h3>
-        <div className='input-group'>
-          <span className='input-group-addon'>{voteInfo}</span>
-          <div className="input-group-btn">  
-            <button onClick={this.props.deletePoll.bind(null,this.props.poll)}
-                    className='btn btn-default'>
-              Delete poll
-            </button>
-          </div>
-        </div>
+        <h4>{this.props.poll.title}</h4>
+        <span className='dashboard-item-text'>{voteInfo}</span>
+        <button onClick={this.props.deletePoll.bind(null,this.props.poll)}
+                className='btn btn-default'>
+                Delete poll
+        </button>
       </div>
     )
   }

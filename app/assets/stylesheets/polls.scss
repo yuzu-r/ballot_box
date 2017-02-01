@@ -8,8 +8,8 @@ font-family: 'Itim', cursive;
 font-family: 'Lato', sans-serif;
 */
 
-$poll_item_color: #EBF2FA;
-$poll_item_selected_color: #F5FEEB;
+$poll-item-color: #EBF2FA;
+$poll-item-selected-color: #F5FEEB;
 $navbar-color: #1B1829;
 $well-color: #F5FEEB;
 
@@ -18,7 +18,7 @@ body{
 }
 
 .poll{
-  background-color: $poll_item_color;
+  background-color: $poll-item-color;
   border-radius: 12px;  
 }
 
@@ -26,21 +26,28 @@ body{
   font-family: 'Kalam', cursive;
 }
 
-.dashboard h2, h3{
+.dashboard h3{
   font-family: 'Kalam', cursive; 
 }
 
 .dashboard-item {
-  background-color: $poll_item_color;
+  background-color: $poll-item-color;
   border-radius: 12px;   
+  margin-bottom: 10px;
+  padding-left: 12px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
-.dashboard-item > h3{ 
+.dashboard-item > h4{ 
   font-family: 'Kalam', cursive; 
 }
 
 .dashboard-item-text {
   font-family: 'Itim', cursive;  
+  background-color: $poll-item-color;
+  text-align: left;
+  margin-right: 20px;
 }
 
 .display-candidate > span.h3 {
@@ -83,7 +90,7 @@ a.navbar-brand {
 }
 
 .poll-index-item{
-  background: $poll_item_color;
+  background: $poll-item-color;
   margin-bottom: 5px;
   display: table;
   border-radius: 12px;
@@ -96,7 +103,7 @@ a.navbar-brand {
 }
 
 .poll-index-item:hover {
-  background: $poll_item_selected_color;
+  background: $poll-item-selected-color;
   cursor: pointer;
 }
 

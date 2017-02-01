@@ -13,6 +13,7 @@ var Dashboard = React.createClass({
     }); 
   },
   render(){
+    console.log(this.state.polls);
     var polls = this.state.polls.map((p) => {
       return (
         <PollDetail key={p.id} poll={p} deletePoll={this.deletePoll} />
@@ -21,7 +22,7 @@ var Dashboard = React.createClass({
 
     return (
       <div className='col-xs-8 col-xs-offset-2 dashboard' >
-        <h2>Poll Manager</h2>
+        <h3>Poll Manager</h3>
         <a href='/'>See all polls</a>
         {polls}
       </div>
