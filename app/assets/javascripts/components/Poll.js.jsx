@@ -108,7 +108,7 @@ var Poll = React.createClass({
       pollMessage = 'Thanks for voting!'
     }   
     return (
-      <div className='col-xs-8 col-xs-offset-2 poll'>
+      <div className='col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 poll'>
         <h3>{this.state.poll.title}</h3>
         <p>{pollMessage}</p>
         <div>

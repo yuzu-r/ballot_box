@@ -51,19 +51,19 @@
   </nav>
   <div class="container">
     <% if flash[:error].present? %>
-      <div class="col-xs-8 col-xs-offset-2 alert alert-danger">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 alert alert-danger">
         <%= flash[:error].html_safe %>
       </div>
     <% end %>
 
     <% if flash[:notice].present? %>
-      <div class="col-xs-8 col-xs-offset-2 alert alert-info">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 alert alert-info">
         <%= flash[:notice].html_safe %>
       </div>
     <% end %>
 
     <% if flash[:alert].present? %>
-      <div class="col-xs-8 col-xs-offset-2 alert alert-warning">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 alert alert-warning">
         <%= flash[:alert].html_safe %>
       </div>
     <% end %>

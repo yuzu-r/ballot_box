@@ -21,7 +21,7 @@ var PollIndex = React.createClass({
     var textElement = this.props.signedIn ? null : <p>Sign up or sign in to create polls of your own.</p>;
     return ( 
       <div>
-        <div className="well col-xs-8 col-xs-offset-2">
+        <div className="well col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
           <h3>Welcome to BallotBox.</h3>
           <p>You are free to vote in any poll listed below.</p>
           {textElement}

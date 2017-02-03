@@ -113,7 +113,7 @@ var NewPollContainer = React.createClass({
     }
     var isValid = this.validTitle() && this.validCandidates();
     return (
-      <div className='col-xs-8 col-xs-offset-2 poll'>
+      <div className='col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 poll'>
         <h3>Create a New Poll</h3>
         <PollTitle title={this.state.title}
                     validTitle={this.validTitle} 
