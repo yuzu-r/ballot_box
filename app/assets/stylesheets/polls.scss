@@ -17,6 +17,10 @@ body{
   font-family: 'Lato', sans-serif;
 }
 
+.panel-heading > h3{
+  font-family: 'Kalam', cursive;
+}
+
 .poll{
   background-color: $poll-item-color;
   border-radius: 12px;  
