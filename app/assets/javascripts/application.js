@@ -21,6 +21,7 @@
 //= require bootstrap-sprockets
 //= require ./vendor/Chart.bundle-v2.4.0
 //= require ./vendor/chartkick-v2.2.2
+//= require ./vendor/polyfill.js
 ReactRailsUJS.handleEvent('turbolinks:before-cache', function() {
   window.ReactRailsUJS.unmountComponents();
 });
