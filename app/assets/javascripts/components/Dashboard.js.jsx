@@ -5,7 +5,7 @@ var Dashboard = React.createClass({
     )
   },
   deletePoll(poll){
-    console.log('deleting poll', poll);
+    //console.log('deleting poll', poll);
     $.ajax({ 
       url: '/polls/' + poll.id, 
       type: 'DELETE', 
@@ -23,6 +23,7 @@ var Dashboard = React.createClass({
       <div className='col-xs-8 col-xs-offset-2 dashboard' >
         <h3>Poll Manager</h3>
         <a href='/'>See all polls</a>
+        <p>Share, monitor or delete your pools.</p>
         {polls}
       </div>
     )

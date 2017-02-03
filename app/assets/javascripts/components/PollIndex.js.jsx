@@ -4,6 +4,9 @@ var PollIndex = React.createClass({
       polls: this.props.polls.polls
     }
   },
+  about(){
+    Turbolinks.visit('/about');
+  },
   showPoll(poll, e){
     //console.log('asked for poll', poll.id);
     Turbolinks.visit('/polls/'+poll.id);
@@ -23,6 +26,7 @@ var PollIndex = React.createClass({
           <p>You are free to vote in any poll listed below.</p>
           {textElement}
           <p>Dissatisfied with the choices a poll offers? Signed in users can add a custom response.</p>
+          <p><button className="btn btn-link" onClick={this.about}>About BallotBox</button></p>
         </div>
         <div className='clearfix'></div>
         <PollIndexHeader sortBy={this.props.sortBy} />

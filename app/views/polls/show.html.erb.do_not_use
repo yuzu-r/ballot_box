@@ -1,2 +1,0 @@
-<h2>showing a poll</h2>
-<%= react_component 'Poll', {poll: @poll, candidates: @candidates, user: current_user} %>

@@ -2,6 +2,10 @@ class PollsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :add_choice]
   respond_to :json
 
+  def about
+    render component: 'About'
+  end
+
   def index
     sort_by = filtering_params['sort'] || 'alpha'
     @polls = Poll.send(sort_by)
@@ -46,9 +50,15 @@ class PollsController < ApplicationController
   end
 
   def destroy
-    Poll.destroy(params[:id])
-    flash[:notice] = 'Poll Deleted.'
-    redirect_to dashboard_path
+    @poll = Poll.find_by_id(params[:id])
+    if @poll.user_id == current_user.id
+      Poll.destroy(params[:id])
+      flash[:notice] = 'Poll Deleted.'
+      redirect_to dashboard_path
+    else
+      @poll.errors.add(:base, 'not your poll');
+      render json: {:poll => @poll.errors, status: :unprocessable_entity}
+    end
   end
 
   def vote
