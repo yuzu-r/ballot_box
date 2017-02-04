@@ -18,6 +18,10 @@ body{
   font-size: 16px;
 }
 
+.form-control{
+  font-size: 16px;
+}
+
 .panel-heading > h3{
   font-family: 'Kalam', cursive;
 }
@@ -31,11 +35,6 @@ body{
   font-family: 'Kalam', cursive;
 }
 
-/*
-.dashboard h3{
-  font-family: 'Kalam', cursive; 
-}
-*/
 .dashboard-item {
   background-color: $poll-item-color;
   border-radius: 12px;   
