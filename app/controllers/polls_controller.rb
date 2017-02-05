@@ -39,7 +39,6 @@ class PollsController < ApplicationController
       render json: {:poll => @poll, status: :success} 
       end
     rescue ActiveRecord::RecordNotUnique => e
-      puts 'I am being rescud'
       @poll.errors.add(:base, 'duplicate candidate name')
       render json: {:poll => @poll.errors, status: :unprocessable_entity}
     rescue => e

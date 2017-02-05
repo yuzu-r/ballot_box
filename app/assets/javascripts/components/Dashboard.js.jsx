@@ -1,21 +1,26 @@
 var Dashboard = React.createClass({
-  getInitialState() {
+  getInitialState: function() {
     return (
       {polls: this.props.polls.polls}
     )
   },
-  deletePoll(poll){
-    //console.log('deleting poll', poll);
+  deletePoll: function(poll){
     $.ajax({ 
       url: '/polls/' + poll.id, 
       type: 'DELETE', 
-      success(response) { console.log('successfully removed item') } 
+      success: function(response) { 
+        //console.log('successfully removed item') 
+      },
+      error: function(response) {
+        console.log('error in poll delete', response.responseText)
+      }
     }); 
   },
-  render(){
-    var polls = this.state.polls.map((p) => {
+  render: function(){
+    var self = this;
+    var polls = this.state.polls.map(function(p) {
       return (
-        <PollDetail key={p.id} poll={p} deletePoll={this.deletePoll} />
+        <PollDetail key={p.id} poll={p} deletePoll={self.deletePoll} />
       )
     });
 

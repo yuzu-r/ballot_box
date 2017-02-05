@@ -1,11 +1,13 @@
 var Poll = React.createClass({
-  getDefaultProps(){
+  getDefaultProps: function(){
     return (
-      {voted: false,
-       blankCandidate: {name: ''}}
+      {
+        voted: false,
+        blankCandidate: {name: ''}
+      }
     )
   },
-  getInitialState(){
+  getInitialState: function(){
     return (
       {
         voted: false,
@@ -17,13 +19,12 @@ var Poll = React.createClass({
       }
     )
   },
-  handleAddCandidate() {
-    // add an input box for a new option
+  handleAddCandidate: function() {
     this.setState(
       { editMode: true}
     )
   },
-  handleCustomCandidateEntry(e){
+  handleCustomCandidateEntry: function(e){
     // evaluate whether the custom entry is a duplicate of anything else
     var customCandidate = e.target.value;
     var candidateList = this.state.candidates.map(c => c.name);
@@ -36,18 +37,17 @@ var Poll = React.createClass({
       }
     )
   },
-  handlePostNewCandidate(name,e) {
+  handlePostNewCandidate: function(name,e) {
+    var self = this;
     $.ajax(
       {
         url: '/polls/' + this.state.poll.id + '/add',
         type: 'PATCH',
         data: {
-                poll: {
-                        candidates_attributes: {name: name}
-                      }
+                poll: { candidates_attributes: {name: name} }
               },
-        success: (response) => {
-          this.setState(
+        success: function(response) {
+          self.setState(
             {
               candidates: response.candidates,
               voted: response.voted,
@@ -55,32 +55,27 @@ var Poll = React.createClass({
             }
           )
         }
-      })
+      });
   },
-  handleVote(candidate, e) {
-    //console.log('voting for', candidate.id);
-    //console.log('pollid', this.state.poll.id);
+  handleVote: function(candidate, e) {
+    var self = this;
     $.ajax(
       { url: '/polls/' + this.state.poll.id + '/vote', 
         type: 'PATCH', 
         data: { 
-          poll: {  
-                  candidates_attributes: {id: candidate.id}
-                } 
+          poll: { candidates_attributes: {id: candidate.id} } 
           }, 
-        success: (response) => { 
-          console.log('I voted!', response); 
-          this.setState(
+        success: function(response) { 
+          self.setState(
             {
               candidates: response.candidates,
               voted: response.voted
             }
-
-          )
+          );
         }
-      });     
+      });
   },
-  render(){
+  render: function(){
     var candidates = this.state.candidates.map((c) => {
       return (
         <Candidate key={c.id} choice={c} handleVote={this.handleVote} voted={this.state.voted} />

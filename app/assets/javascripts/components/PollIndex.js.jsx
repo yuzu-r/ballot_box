@@ -1,18 +1,16 @@
 var PollIndex = React.createClass({
-  getInitialState(){
+  getInitialState: function(){
     return {
       polls: this.props.polls.polls
     }
   },
-  about(){
+  about: function(){
     Turbolinks.visit('/about');
   },
-  showPoll(poll, e){
-    //console.log('asked for poll', poll.id);
+  showPoll: function(poll, e){
     Turbolinks.visit('/polls/'+poll.id);
   },
-  render(){
-    //console.log(this.state.polls[0])
+  render: function(){
     var polls = this.state.polls.map((p) => {
       return (
         <PollItem key={p.id} item={p} showPoll={this.showPoll} />
@@ -26,7 +24,7 @@ var PollIndex = React.createClass({
           <p>You are free to vote in any poll listed below.</p>
           {textElement}
           <p>Dissatisfied with the choices a poll offers? Signed in users can add a custom response.</p>
-          <p><button className="btn btn-link" onClick={this.about}>About BallotBox</button></p>
+          <p><a href="/about">About BallotBox</a></p>
         </div>
         <div className='clearfix'></div>
         <PollIndexHeader sortBy={this.props.sortBy} />

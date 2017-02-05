@@ -1,5 +1,5 @@
 var PollIndexHeader = React.createClass({
-  render(){
+  render: function(){
     var buttonText;
     switch(this.props.sortBy) {
       case 'alpha':

@@ -1,17 +1,17 @@
 var PollDetail = React.createClass({
-  getInitialState() {
+  getInitialState: function() {
     return (
       {
         showResults: false
       }
     )    
   },
-  toggleResults(){
+  toggleResults: function(){
     this.setState({
       showResults: !this.state.showResults
     });
   },
-  tweetPoll() {
+  tweetPoll: function() {
     var tweetText, tweetUrl;
     var tweetBaseUrl = 'https://twitter.com/intent/tweet?text=';
     var pollUrl = window.location.origin + '/polls/' + this.props.poll.id;
@@ -19,10 +19,10 @@ var PollDetail = React.createClass({
     tweetUrl = tweetBaseUrl + tweetText;
     var myWindow = window.open(tweetUrl, "Popup", "location = 1, status = 1, scrollbars = 1, resizable = 1, toolbar = 1, titlebar = 1, width = 400, height = 300");
   },
-  visitPoll(){
+  visitPoll: function(){
     Turbolinks.visit('/polls/'+this.props.poll.id);
   },
-  render(){
+  render: function(){
     var chartResults, resultButtonText;
     var voteInfo = 'Total votes: ' + this.props.poll.total_votes 
                     + ', last vote: ' + this.props.poll.last_voted_on;

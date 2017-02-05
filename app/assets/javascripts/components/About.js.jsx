@@ -1,9 +1,9 @@
 var About = React.createClass({
-  render(){
+  render: function(){
     return(
         <div className="well col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-          <h3>About BallotBox.</h3>
-          <ul>BallotBox Guidelines:
+          <h3>BallotBox Details</h3>
+          <ul>
             <li>No login is required to view and vote on any poll.</li>
             <li>Registration and login are required to create a poll, manage your polls, or add custom options to any poll.</li>
             <li>If you are adding a custom option to a poll, it's assumed you want to vote for it. You can't add an option without voting for it.</li>

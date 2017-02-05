@@ -8,7 +8,7 @@ var PollCandidate = React.createClass({
                onChange={this.props.handleNameChange}
                className='form-control'>
         </input>
-        <div className="input-group-btn">  
+        <div className='input-group-btn'>  
           <button onClick={this.props.handleDeleteCandidate}
                   className='btn btn-default'>
             Delete this option

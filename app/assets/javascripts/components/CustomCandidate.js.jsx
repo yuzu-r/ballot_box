@@ -1,5 +1,5 @@
 var CustomCandidate = React.createClass({
-  render(){
+  render: function(){
     return (
       <div className='candidate input-group'>
         <input placeholder='enter custom option' 

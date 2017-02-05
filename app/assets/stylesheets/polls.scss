@@ -2,12 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* raisin black: 242038; eerie black 1B1829; not bad could be more contrast 392F5A
-font-family: 'Kalam', cursive;
-font-family: 'Itim', cursive;
-font-family: 'Lato', sans-serif;
-*/
-
 $poll-item-color: #EBF2FA;
 $poll-item-selected-color: #F5FEEB;
 $navbar-color: #1B1829;
@@ -159,13 +153,6 @@ button:disabled{
 
 .input-poll-title{
   margin-bottom: 10px;  
-}
-
-.poll-detail{
-  background: pink;
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid black;
 }
 
 .chart {

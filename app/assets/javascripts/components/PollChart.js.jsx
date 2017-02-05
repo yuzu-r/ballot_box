@@ -7,18 +7,19 @@ var PollChart = React.createClass({
     )
   },
   componentDidMount: function(){
+    var self = this;
     $.ajax(
       { url: '/poll_results/' + this.props.poll_id, 
         type: 'GET',
-        success: (data) => { 
-          this.setState(
+        success: function(data) { 
+          self.setState(
             {
               poll_results: data
             },
-            this.drawCharts
+            self.drawCharts
           )
         },
-        error: (response) => {
+        error: function(response) {
           console.log('failed!', response);
         }
       });        

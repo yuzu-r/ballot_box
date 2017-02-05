@@ -51,17 +51,15 @@ var NewPollContainer = React.createClass({
                     candidates_attributes: this.state.candidates
                   } 
         }, 
-        success: (response) => {          
-          // this is terrible
+        success: function(response) {          
           if (response.status === 'success') {
-            console.log('it worked!');
             Turbolinks.visit('/polls/' + response.poll.id);
           }
           else {
             console.log('response received, but it was not saved successfully',response);
           }
         },
-        error: (response) => {
+        error: function(response) {
           console.log('poll creation faild!', response.responseText);
         }
       });
